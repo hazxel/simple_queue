@@ -17,7 +17,7 @@ public:
         capacity_ = capacity;
     }
 
-    int dequeue() {
+    ELEMENT dequeue() {
         if (size_ > 0) {
             int tmp = head_;
             ++head_;
@@ -29,13 +29,13 @@ public:
         }
     }
 
-    void enqueue(int element) {
+    void enqueue(ELEMENT ele) {
         if (size_ == capacity_) {
             throw std::invalid_argument("queue is full!");
         }
         ++tail_;
         tail_ = tail_ % capacity_;
-        buffer_[tail_] = element;
+        buffer_[tail_] = ele;
         ++size_;
     }
 
@@ -50,17 +50,16 @@ private:
 
 
 int main() {
-    queue<double> q(3);
-    q.enqueue(1);
-    q.enqueue(2);
-    q.enqueue(3);
+    queue<std::string> q(3);
+    q.enqueue("1");
+    q.enqueue("2");
+    q.enqueue("3");
     q.dequeue();
     q.dequeue();
-
-    q.enqueue(4);
-    q.enqueue(5);
-
+    q.enqueue("4");
+    q.enqueue("5");
 
     cout << q.dequeue() << q.dequeue() << q.dequeue() << endl;
+    
     return 0;
 }
